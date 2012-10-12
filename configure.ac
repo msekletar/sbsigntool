@@ -7,6 +7,8 @@ AC_PREREQ(2.60)
 AC_CONFIG_HEADERS(config.h)
 AC_CONFIG_SRCDIR(src/sbsign.c)
 
+AC_CANONICAL_HOST
+
 AM_PROG_AS
 AC_PROG_CC
 AM_PROG_CC_C_O
@@ -64,7 +66,18 @@ PKG_CHECK_MODULES(uuid, uuid,
     AC_MSG_ERROR([libuuid (from the uuid package) is required]))
 
 dnl gnu-efi headers require extra include dirs
-EFI_ARCH=$(uname -m)
+case $host_cpu in
+	x86_64)
+		EFI_ARCH=$host_cpu
+		;;
+	i*86)
+		EFI_ARCH=ia32
+		;;
+	*)
+		AC_MSG_ERROR([unsupported EFI architecture $host_cpu])
+		;;
+esac
+
 EFI_CPPFLAGS="-I/usr/include/efi -I/usr/include/efi/$EFI_ARCH \
  -DEFI_FUNCTION_WRAPPER"
 CPPFLAGS_save="$CPPFLAGS"
