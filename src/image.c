@@ -425,6 +425,8 @@ reparse:
 	 * we've calculated during the pecoff parsing, so we need to redo that
 	 * too.
 	 */
+	image->data_size = align_up(image->data_size, 8);
+
 	if (image->data_size > image->size) {
 		image->buf = talloc_realloc(image, image->buf, uint8_t,
 				image->data_size);
