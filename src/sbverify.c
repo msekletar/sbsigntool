@@ -201,6 +201,7 @@ static int x509_verify_cb(int status, X509_STORE_CTX *ctx)
 
 	/* all certs given with the --cert argument are trusted */
 	else if (err == X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT_LOCALLY ||
+			err == X509_V_ERR_UNABLE_TO_GET_ISSUER_CERT ||
 			err == X509_V_ERR_CERT_UNTRUSTED) {
 
 		if (cert_in_store(ctx->current_cert, ctx))
