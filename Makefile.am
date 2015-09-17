@@ -1,2 +1,2 @@
 
-SUBDIRS = lib/ccan src docs tests
+SUBDIRS = lib/ccan src docs

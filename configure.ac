@@ -87,5 +87,5 @@ CPPFLAGS="$CPPFLAGS_save"
 AC_SUBST(EFI_CPPFLAGS, $EFI_CPPFLAGS)
 
 AC_CONFIG_FILES([Makefile src/Makefile lib/ccan/Makefile]
-		[docs/Makefile tests/Makefile])
+		[docs/Makefile])
 AC_OUTPUT
